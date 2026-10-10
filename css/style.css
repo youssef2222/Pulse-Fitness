@@ -76,3 +76,69 @@ nav {
     border-radius: 6px;
     font-weight: bold;
 }
+
+.hero {
+    min-height: 480px;
+    padding: 80px 20px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        radial-gradient(ellipse at top right, #392016, transparent 55%),
+        var(--color-background);
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    color: var(--color-accent);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 750px;
+    margin: 16px 0;
+    font-size: clamp(40px, 7vw, 72px);
+    line-height: 1.1;
+}
+
+.hero-description {
+    max-width: 600px;
+    color: var(--color-muted);
+    font-size: 18px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.button {
+    display: inline-block;
+    padding: 13px 20px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.button-primary {
+    background-color: var(--color-accent);
+}
+
+.button-secondary {
+    border-color: #555;
+}
+
+.button:hover,
+.nav-cta:hover {
+    opacity: 0.85;
+}
