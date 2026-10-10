@@ -142,3 +142,60 @@ nav {
 .nav-cta:hover {
     opacity: 0.85;
 }
+
+.section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 72px 20px;
+}
+
+.section-heading {
+    margin-bottom: 32px;
+}
+
+.section-heading h2 {
+    margin: 8px 0;
+    font-size: 36px;
+}
+
+.section-heading > p:last-child {
+    color: var(--color-muted);
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.class-card {
+    min-width: 0;
+    padding: 24px;
+    background-color: var(--color-surface);
+    border-radius: 10px;
+    border-left: 4px solid var(--color-accent);
+}
+
+.class-day {
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.class-card h3 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+.class-card p {
+    overflow-wrap: anywhere;
+}
+
+.class-coach {
+    color: var(--color-muted);
+    margin-top: 10px;
+    font-size: 14px;
+}
+
