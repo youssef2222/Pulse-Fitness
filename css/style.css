@@ -199,3 +199,44 @@ nav {
     font-size: 14px;
 }
 
+.trainer-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 24px;
+}
+
+.trainer-card {
+    flex: 1 1 280px;
+    min-width: 0;
+    overflow: hidden;
+    background-color: var(--color-surface);
+    border-radius: 10px;
+}
+
+.trainer-card img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.trainer-info {
+    padding: 24px;
+}
+
+.trainer-info h3 {
+    margin-bottom: 6px;
+    font-size: 22px;
+}
+
+.trainer-role {
+    margin-bottom: 14px;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.trainer-info p:last-child {
+    color: var(--color-muted);
+}
+
