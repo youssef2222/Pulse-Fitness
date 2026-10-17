@@ -38,6 +38,8 @@ nav {
 }
 
 .site-header {
+    position: sticky;
+    top: 0;
     background-color: var(--color-background);
     border-bottom: 1px solid #292929;
 }
@@ -64,6 +66,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 24px;
+    
 }
 
 .nav-links a:hover {
@@ -141,6 +144,7 @@ nav {
 .button:hover,
 .nav-cta:hover {
     opacity: 0.85;
+    transform: translateY(-1px);
 }
 
 .section {
@@ -303,5 +307,80 @@ nav {
     color: white;
     font-size: 11px;
     font-weight: bold;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .schedule-grid,
+    .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+    .navbar {
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+
+    .nav-cta {
+        text-align: center;
+    }
+
+    .hero {
+        min-height: 400px;
+        padding: 56px 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 10vw, 48px);
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 48px 16px;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .schedule-grid,
+    .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .trainer-list {
+        flex-direction: column;
+    }
+
+    .trainer-card {
+        flex: 1 1 auto;
+        width: 100%;
+    }
 }
 
