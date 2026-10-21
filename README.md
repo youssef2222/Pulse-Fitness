@@ -1,16 +1,123 @@
-# React + Vite
+Pulse Fitness 🏋️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive gym website built with React and Vite, featuring a clean design for fitness enthusiasts. The website showcases workout classes, trainer profiles, training schedules, and membership plans.
 
-Currently, two official plugins are available:
+✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Responsive Design — Optimized for desktop, tablet, and mobile devices.
 
-## React Compiler
+Modern UI — Clean black-and-white theme inspired by fitness brands.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Class Schedule — Display fitness classes and training sessions.
 
-## Expanding the ESLint configuration
+Trainer Profiles — Showcase trainers and their specialties.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Membership Plans — Present available membership options and pricing.
+
+Reusable Components — Build a maintainable interface with React.
+
+Fast Development — Powered by Vite with Hot Module Replacement (HMR).
+
+🛠️ Technologies
+
+React
+
+Vite
+
+JavaScript (ES6+)
+
+HTML5
+
+CSS3
+
+Flexbox and CSS Grid
+
+ESLint
+
+Git and GitHub
+
+🚀 Getting Started
+
+Prerequisites
+
+Node.js
+
+npm
+
+Installation
+
+Clone the repository:
+
+git clone YOUR_REPOSITORY_URL
+
+Navigate to the project directory:
+
+cd pulsefitnes
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
+npm run dev
+
+Open the local URL displayed in your terminal, usually http://localhost:5173.
+
+📂 Project Structure
+
+pulsefitnes/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+
+The structure may vary depending on the implementation.
+
+📸 Preview
+
+<!-- Add your project screenshot here -->
+
+<!-- ![Pulse Fitness Website](./screenshots/homepage.png) -->
+
+🎯 Learning Objectives
+
+Develop a responsive website using React.
+
+Practice component-based architecture.
+
+Improve CSS styling and layout skills.
+
+Use Vite for a fast development workflow.
+
+Manage project versions with Git and GitHub.
+
+🔮 Future Improvements
+
+Add interactive class booking.
+
+Implement membership registration.
+
+Add form validation.
+
+Integrate a backend API.
+
+Deploy the website online.
+
+👨‍💻 Author
+
+Youssef
+
+Software Engineering | Web Development
+
+GitHub: youssef2222
+
+Pulse Fitness — Train Hard. Stay Strong.

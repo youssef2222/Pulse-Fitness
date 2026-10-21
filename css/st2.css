@@ -1,0 +1,1216 @@
+/* =====================================================
+   PULSE FITNESS — CLEAN RESPONSIVE STYLESHEET
+   Keep each component rule in one place; responsive
+   overrides are grouped at the end of this file.
+===================================================== */
+
+/* 1. RESET AND GLOBAL VARIABLES */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-background: #080808;
+    --color-surface: #141414;
+    --color-surface-light: #1c1c1c;
+    --color-text: #ffffff;
+    --color-muted: #a5a5a5;
+    --color-border: #333333;
+    --color-accent: #ffffff;
+    --container-width: 1280px;
+    --section-padding: 20px 32px;
+    --header-height: 70px;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* scroll-padding-top: calc(var(--header-height) + 16px); */
+    scroll-padding-top: 100px;
+}
+
+body,
+button,
+a {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+p,
+h1,
+h2,
+h3 {
+    margin-top: 0;
+}
+
+::selection {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* 2. HEADER AND NAVIGATION */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #000000;
+    border-bottom: 1px solid #292929;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1440px;
+    min-height: var(--header-height);
+    margin: 0 auto;
+    padding: 8px 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* .brand is the clickable logo wrapper in the header. */
+.site-header .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+
+/* The SVG can scale without forcing the header to become oversized. */
+.site-header .brand-logo {
+    display: block;
+    width: 150px;
+    height: auto;
+    max-width: 100%;
+    max-height: 44px;
+    margin: 0;
+    object-fit: contain;
+}
+
+/* Optional text title, if it exists in the HTML. */
+.site-header .brand-title {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* Footer logo is separate from the header logo. */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 180px;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+.site-header .main-nav {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    min-width: 0;
+}
+
+.site-header .main-nav a:not(.nav-cta) {
+    color: #e8e8e8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.site-header .main-nav a:not(.nav-cta):hover,
+.site-header .main-nav a:not(.nav-cta):focus-visible {
+    color: #9f9f9f;
+}
+
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 17px;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    color: #0a0a0a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* 3. BUTTONS */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 13px 24px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary,
+.button-light {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.button-primary:hover,
+.button-light:hover {
+    background-color: #d8d8d8;
+    color: #000000;
+}
+
+.button-secondary,
+.button-outline {
+    background-color: transparent;
+    border-color: #555555;
+    color: #ffffff;
+}
+
+.button-secondary:hover,
+.button-outline:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+/* 4. REUSABLE SECTION STYLES */
+.section {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--section-padding);
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: #bdbdbd;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.section-heading h2 {
+    margin-bottom: 0;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.section-heading > p {
+    max-width: 360px;
+    margin-bottom: 0;
+    color: var(--color-muted);
+    font-size: 15px;
+}
+
+/* 5. HERO SECTION */
+.hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 650px;
+    padding: 100px 32px 90px;
+    display: flex;
+    align-items: center;
+    background-color: #111111;
+}
+
+.hero-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background-image:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.78) 42%, rgba(0, 0, 0, 0.28) 100%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.65), transparent 45%),
+        url("../images/intro-image.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.02);
+}
+
+.hero-content {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.hero .eyebrow {
+    color: #dddddd;
+}
+
+.hero h1 {
+    max-width: 850px;
+    margin: 18px 0 24px;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 0.98;
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    display: block;
+    color: #bdbdbd;
+}
+
+.hero-description {
+    max-width: 520px;
+    margin-bottom: 32px;
+    color: #d0d0d0;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.hero-bottom {
+    position: absolute;
+    right: 32px;
+    bottom: 24px;
+    left: 32px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.hero-bottom span {
+    color: #c5c5c5;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* 6. INTRODUCTION SECTION */
+.introduction {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 72px;
+}
+
+.intro-content h2 {
+    margin-bottom: 24px;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.05;
+}
+
+.intro-content h2 span {
+    display: block;
+    color: #999999;
+}
+
+.intro-content > p:not(.eyebrow) {
+    max-width: 480px;
+    margin-bottom: 30px;
+    color: var(--color-muted);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #777777;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: border-color 0.2s ease;
+}
+
+.text-link:hover {
+    border-color: #ffffff;
+}
+
+.text-link span {
+    font-size: 18px;
+}
+
+.intro-image {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: var(--color-surface);
+}
+
+.intro-image img {
+    display: block;
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.intro-image:hover img {
+    transform: scale(1.04);
+}
+
+/* 7. CLASSES SECTION */
+.classes-section {
+    max-width: none;
+    background-color: #111111;
+}
+
+.classes-section > .section-heading,
+.classes-section > .schedule-grid {
+    max-width: var(--container-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid #333333;
+    background-color: #333333;
+}
+
+.class-card {
+    min-width: 0;
+    padding: 30px 26px;
+    border-radius: 3px;
+    background-color: #111111;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-3px);
+    background-color: #1b1b1b;
+}
+
+.class-number {
+    margin-bottom: 34px;
+    color: #8e8e8e;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.class-day {
+    margin-bottom: 10px;
+    color: #bdbdbd;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.class-card h3 {
+    margin-bottom: 14px;
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.class-card > p:not(.class-day) {
+    min-height: 72px;
+    margin-bottom: 22px;
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.class-coach {
+    display: block;
+    padding-top: 18px;
+    border-top: 1px solid #333333;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* 8. STATEMENT BANNER */
+.statement-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 400px;
+    padding: 15px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #202020;
+}
+
+.statement-banner::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)),
+        url("../images/banner.avif");
+    background-size: cover;
+    background-position: center;
+}
+
+.statement-content {
+    width: 100%;
+    max-width: 800px;
+}
+
+.statement-content h2 {
+    margin-bottom: 32px;
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 1.05;
+}
+
+.statement-content h2 span {
+    display: block;
+    color: #aaaaaa;
+}
+
+/* 9. TRAINERS SECTION */
+.trainer-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.trainer-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #292929;
+    border-radius: 3px;
+    background-color: var(--color-surface);
+}
+
+.trainer-card img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.trainer-card:hover img {
+    filter: grayscale(0%);
+}
+
+.trainer-info {
+    padding: 24px;
+}
+
+.trainer-role {
+    margin-bottom: 10px;
+    color: #bdbdbd;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.trainer-info h3 {
+    margin-bottom: 12px;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.trainer-info p:last-child {
+    margin-bottom: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* 10. MEMBERSHIP SECTION */
+.membership-section {
+    max-width: none;
+    background-color: #111111;
+}
+
+.membership-section > .section-heading,
+.membership-section > .pricing-grid,
+.membership-section > .pricing-note {
+    max-width: var(--container-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 20px;
+}
+
+.pricing-card {
+    min-width: 0;
+    padding: 34px 28px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #383838;
+    border-radius: 3px;
+    background-color: #171717;
+}
+
+.plan-label {
+    margin-bottom: 18px;
+    color: #aaaaaa;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.pricing-card h3 {
+    margin-bottom: 0;
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.price {
+    margin: 18px 0 10px;
+    font-size: clamp(34px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.price span {
+    color: var(--color-muted);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.plan-description {
+    min-height: 48px;
+    margin-bottom: 24px;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.plan-features {
+    margin: 0 0 28px;
+    padding: 0;
+    list-style: none;
+}
+
+.plan-features li {
+    position: relative;
+    margin-bottom: 14px;
+    padding-left: 22px;
+    color: #e0e0e0;
+    font-size: 13px;
+}
+
+.plan-features li::before {
+    position: absolute;
+    left: 0;
+    content: "✓";
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.pricing-card > .button {
+    width: 100%;
+    margin-top: auto;
+}
+
+.pricing-featured {
+    transform: translateY(-8px);
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.pricing-featured .plan-label,
+.pricing-featured .price span,
+.pricing-featured .plan-description {
+    color: #555555;
+}
+
+.pricing-featured .plan-features li {
+    color: #222222;
+}
+
+.pricing-featured .plan-features li::before {
+    color: #000000;
+}
+
+.plan-badge {
+    align-self: flex-start;
+    margin-bottom: 18px;
+    padding: 6px 10px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.pricing-featured .button-primary {
+    border-color: #000000;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.pricing-featured .button-primary:hover {
+    background-color: #333333;
+}
+
+.pricing-note {
+    margin-top: 24px;
+    margin-bottom: 0;
+    color: #888888;
+    font-size: 12px;
+}
+
+/* 11. FINAL CALL TO ACTION */
+.final-cta {
+    padding: 100px 24px;
+    background-color: #e9e9e9;
+    color: #000000;
+    text-align: center;
+
+     position: relative;
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.65)
+        ),
+        url("../images/final.jpg");
+        background-size: cover;
+    background-position: center;
+}
+
+.final-cta .eyebrow {
+    color: #ffffff;
+}
+
+.final-cta h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: clamp(36px, 6vw, 68px);
+    font-weight: 900;
+    letter-spacing: -2.5px;
+    line-height: 1.1;
+}
+
+.final-cta h2 span {
+    display: block;
+}
+
+.final-cta > p:not(.eyebrow) {
+    margin-bottom: 30px;
+    color: #d8d8d8;
+    font-size: 15px;
+}
+
+.final-cta .button {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.final-cta .button:hover {
+    background-color: #333333;
+}
+
+/* 12. FOOTER */
+.site-footer {
+    padding: 60px 40px 20px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.footer-main {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding-bottom: 48px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+}
+
+.footer-brand .logo img {
+    width: 180px;
+}
+
+.footer-brand > p {
+    max-width: 300px;
+    margin-top: 22px;
+    color: #999999;
+    font-size: 14px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.footer-column h3 {
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.footer-column a {
+    color: #aaaaaa;
+    font-size: 13px;
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid #292929;
+}
+
+.footer-bottom p,
+.footer-bottom a {
+    margin-bottom: 0;
+    color: #888888;
+    font-size: 11px;
+}
+
+.footer-bottom a {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom a:hover {
+    color: #ffffff;
+}
+
+/* 13. TABLET RESPONSIVE DESIGN */
+@media (max-width: 1000px) {
+    :root {
+        --section-padding: 12px 24px;
+        --header-height: 64px;
+    }
+
+    .nav-container {
+        padding: 8px 24px;
+        gap: 18px;
+    }
+
+    .site-header .brand-logo {
+        width: 120px;
+        max-height: 40px;
+    }
+
+    .site-header .main-nav {
+        gap: 16px;
+    }
+
+    .site-header .main-nav a:not(.nav-cta) {
+        font-size: 10px;
+    }
+
+    .hero {
+        min-height: 580px;
+    }
+
+    .introduction {
+        gap: 36px;
+    }
+
+    .intro-image img {
+        height: 360px;
+    }
+
+    .schedule-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .trainer-list {
+        gap: 16px;
+    }
+
+    .trainer-card img {
+        height: 260px;
+    }
+
+    .trainer-info {
+        padding: 20px;
+    }
+
+    .pricing-grid {
+        gap: 12px;
+    }
+
+    .pricing-card {
+        padding: 28px 20px;
+    }
+}
+
+/* 14. MOBILE RESPONSIVE DESIGN */
+@media (max-width: 650px) {
+    :root {
+        --section-padding: 26px 20px;
+        --header-height: 60px;
+    }
+
+    /* Keep logo and navigation in one horizontal header row. */
+    .nav-container {
+        min-height: var(--header-height);
+        padding: 8px 12px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .site-header .brand {
+        flex: 0 0 auto;
+    }
+
+    .site-header .brand-logo {
+        width: 88px;
+        max-width: 88px;
+        max-height: 32px;
+    }
+
+    .site-header .brand-title {
+        font-size: 12px;
+        letter-spacing: 0.8px;
+    }
+
+    .site-header .main-nav {
+        flex: 1 1 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        width: auto;
+        gap: 5px 9px;
+    }
+
+    .site-header .main-nav a:not(.nav-cta) {
+        font-size: 8px;
+        letter-spacing: 0.35px;
+        line-height: 1.4;
+    }
+
+    .site-header .nav-cta {
+        padding: 6px 8px;
+        font-size: 8px;
+        letter-spacing: 0.3px;
+    }
+
+    .hero {
+        min-height: 560px;
+        padding: 80px 20px 100px;
+    }
+
+    .hero-background {
+        background-position: 60% center;
+        background-image:
+            linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.55)),
+            url("images/.intro-image");
+    }
+
+    .hero h1 {
+        font-size: clamp(46px, 12vw, 68px);
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .hero-bottom {
+        right: 20px;
+        bottom: 20px;
+        left: 20px;
+        gap: 10px;
+    }
+
+    .hero-bottom span {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+
+    .section-heading > p {
+        font-size: 14px;
+    }
+
+    .introduction {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .intro-content h2 {
+        font-size: 44px;
+        letter-spacing: -1.5px;
+    }
+
+    .intro-image img {
+        height: 300px;
+    }
+
+    .schedule-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .class-card {
+        padding: 24px 20px;
+    }
+
+    .class-number {
+        margin-bottom: 22px;
+    }
+
+    .class-card > p:not(.class-day) {
+        min-height: auto;
+    }
+
+    .statement-banner {
+        min-height: 340px;
+        padding: 64px 20px;
+    }
+
+    .statement-content h2 {
+        font-size: 44px;
+        letter-spacing: -1.5px;
+    }
+
+    .trainer-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .trainer-card img {
+        height: 320px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .pricing-card {
+        padding: 30px 24px;
+    }
+
+    .pricing-featured {
+        transform: none;
+    }
+
+    .price {
+        font-size: 40px;
+    }
+
+    .final-cta {
+        padding: 72px 20px;
+    }
+
+    .final-cta h2 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
+    }
+
+    .site-footer {
+        padding: 48px 20px 20px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 24px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* 15. VERY SMALL MOBILE SCREENS */
+@media (max-width: 380px) {
+    .nav-container {
+        padding-right: 8px;
+        padding-left: 8px;
+        gap: 6px;
+    }
+
+    .site-header .brand-logo {
+        width: 68px;
+        max-width: 68px;
+        max-height: 28px;
+    }
+
+    .site-header .main-nav {
+        gap: 4px 6px;
+    }
+
+    .site-header .main-nav a:not(.nav-cta) {
+        font-size: 7px;
+        letter-spacing: 0.2px;
+    }
+
+    .site-header .nav-cta {
+        padding: 5px 6px;
+        font-size: 7px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-bottom span {
+        font-size: 7px;
+    }
+
+    .statement-content h2 {
+        font-size: 36px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}
+
+/* 16. ACCESSIBILITY AND ANCHOR SCROLLING */
+a:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
+
+#schedule,
+#trainers,
+#membership {
+    scroll-margin-top: -30px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
