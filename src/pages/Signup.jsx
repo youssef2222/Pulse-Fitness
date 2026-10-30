@@ -30,7 +30,7 @@ export function Signup() {
 
     try {
       await signup(form.full_name, form.email, form.password);
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       setError(err.message);
     } finally {
