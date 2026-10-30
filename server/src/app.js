@@ -456,6 +456,6 @@ app.get("/api/memberships/my", requireAuth, async (req, res) => {
 // START SERVER
 // --------------------------------------------------
 
-app.listen(port, () => {
-  console.log(`Pulse Fitness API running on http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Pulse Fitness API running on port ${port}`);
 });
