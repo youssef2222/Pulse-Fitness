@@ -269,7 +269,7 @@ export function Container() {
           backgroundImage: `
       linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.78) 42%, rgba(0,0,0,0.28) 100%),
       linear-gradient(0deg, rgba(0,0,0,0.65), transparent 45%),
-      url("/public/images/images/intro-image.avif")
+      url("/images/images/intro-image.avif")
     `,
         }}
       >
@@ -332,7 +332,7 @@ export function Container() {
         </div>
 
         <img
-          src="/public/images/images/img1.webp"
+          src="/images/images/img1.webp"
           alt="Modern gym with professional fitness equipment"
           loading="lazy"
           className="h-[320px] w-full object-cover sm:h-[420px]"
@@ -401,7 +401,7 @@ export function Container() {
         style={{
           backgroundImage: `
       linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
-      url("public//images/images/banner.avif")
+      url("/images/images/banner.avif")
     `,
         }}
       >
@@ -557,7 +557,7 @@ export function Container() {
         style={{
           backgroundImage: `
       linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-      url("public/images/images/final.jpg")
+      url("images/images/final.jpg")
     `,
         }}
       >
