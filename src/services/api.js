@@ -3,7 +3,9 @@ const API_URL =
 
 // Get trainers from the classes
 export async function getClasses() {
-  const response = await fetch(`${API_URL}/classes`);
+  const response = await fetch(`${API_URL}/classes`, {
+    credentials: "include",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to load classes");
@@ -14,7 +16,9 @@ export async function getClasses() {
 
 // Get trainers from the backend
 export async function getTrainers() {
-  const response = await fetch(`${API_URL}/trainers`);
+  const response = await fetch(`${API_URL}/trainers`, {
+    credentials: "include",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch trainers");
@@ -25,7 +29,9 @@ export async function getTrainers() {
 
 // Get membership plans from the backend
 export async function getPlans() {
-  const response = await fetch(`${API_URL}/plans`);
+   const response = await fetch(`${API_URL}/plans`, {
+    credentials: "include",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch membership plans");

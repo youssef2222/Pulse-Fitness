@@ -11,6 +11,7 @@ import { pool } from "./db.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
+app.set("trust proxy", 1);
 
 if (!process.env.SESSION_SECRET) {
   throw new Error("SESSION_SECRET is missing from server/.env");
@@ -41,10 +42,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+     httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
   },
 }));
 
@@ -244,10 +245,10 @@ app.post("/api/auth/logout", (req, res) => {
     }
 
     res.clearCookie("pulse.sid", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        path: "/",
     });
 
     res.json({ message: "Logged out successfully." });
