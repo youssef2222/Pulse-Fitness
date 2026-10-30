@@ -8,7 +8,7 @@ export function Footer() {
         <div className="flex flex-col items-start gap-5">
           <a href="#home" aria-label="PulseFitness home" className="block w-[200px]">
             <img
-              src="/public/images/images/pulse-fitness-white.svg"
+              src="/images/images/pulse-fitness-white.svg"
               alt="PulseFitness"
               loading="lazy"
               className="h-auto w-full"
