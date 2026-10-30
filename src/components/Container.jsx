@@ -557,7 +557,7 @@ export function Container() {
         style={{
           backgroundImage: `
       linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-      url("images/images/final.jpg")
+      url("/images/images/final.jpg")
     `,
         }}
       >
