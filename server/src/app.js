@@ -10,7 +10,7 @@ import { rateLimit } from "express-rate-limit";
 import { pool } from "./db.js";
 
 const app = express();
-const port = process.env.PORT || 4000;
+
 app.set("trust proxy", 1);
 
 if (!process.env.SESSION_SECRET) {
@@ -456,6 +456,4 @@ app.get("/api/memberships/my", requireAuth, async (req, res) => {
 // START SERVER
 // --------------------------------------------------
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Pulse Fitness API running on port ${port}`);
-});
+export default app;
