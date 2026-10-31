@@ -1,123 +1,118 @@
 Pulse Fitness 🏋️
 
-A modern, responsive gym website built with React and Vite, featuring a clean design for fitness enthusiasts. The website showcases workout classes, trainer profiles, training schedules, and membership plans.
+Pulse Fitness is a full-stack fitness web application designed to help users discover fitness classes, explore trainers, view membership plans, and manage their accounts.
+
+The project was developed as part of the Mayerfeld Frontend Developer Practicum, with the goal of building a responsive and functional web application using modern web technologies.
+
+🌐 Live Demo
+
+Visit Pulse Fitness
 
 ✨ Features
 
-Responsive Design — Optimized for desktop, tablet, and mobile devices.
+Homepage: Modern and responsive fitness website.
 
-Modern UI — Clean black-and-white theme inspired by fitness brands.
+Classes: Explore available fitness classes.
 
-Class Schedule — Display fitness classes and training sessions.
+Trainers: Discover the fitness team.
 
-Trainer Profiles — Showcase trainers and their specialties.
+Membership Plans: View available membership options.
 
-Membership Plans — Present available membership options and pricing.
+User Authentication: Register, log in, and log out.
 
-Reusable Components — Build a maintainable interface with React.
+Session Management: Maintain authenticated user sessions.
 
-Fast Development — Powered by Vite with Hot Module Replacement (HMR).
+Membership Management: Subscribe to membership plans.
 
-🛠️ Technologies
+🛠️ Technologies Used
+
+Frontend
 
 React
 
 Vite
 
-JavaScript (ES6+)
+Tailwind CSS
 
-HTML5
+JavaScript
 
-CSS3
-
-Flexbox and CSS Grid
-
-ESLint
-
-Git and GitHub
-
-🚀 Getting Started
-
-Prerequisites
+Backend
 
 Node.js
 
-npm
+Express.js
 
-Installation
+REST API
 
-Clone the repository:
+bcrypt for password hashing
 
-git clone YOUR_REPOSITORY_URL
+Express Session for authentication
 
-Navigate to the project directory:
+Database
 
-cd pulsefitnes
+PostgreSQL
 
-Install dependencies:
+Neon (Cloud Database)
 
-npm install
+Deployment & Tools
 
-Start the development server:
+Vercel
 
-npm run dev
+Git & GitHub
 
-Open the local URL displayed in your terminal, usually http://localhost:5173.
+🏗️ Project Architecture
 
-📂 Project Structure
+The application is organized into three main parts:
 
-pulsefitnes/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
+Pulse Fitness
+│
+├── Client (React + Vite)
+│   └── User Interface
+│
+├── Server (Node.js + Express)
+│   └── API, Authentication & Business Logic
+│
+└── Database (PostgreSQL + Neon)
+    └── Users, Classes, Trainers & Memberships
 
-The structure may vary depending on the implementation.
+How it works:
 
-📸 Preview
+The user interacts with the React frontend.
 
-<!-- Add your project screenshot here -->
+The frontend sends HTTP requests to the Express backend.
 
-<!-- ![Pulse Fitness Website](./screenshots/homepage.png) -->
+The backend processes requests and communicates with PostgreSQL.
 
-🎯 Learning Objectives
+The database stores and returns the required information.
 
-Develop a responsive website using React.
+The backend sends responses to the frontend.
 
-Practice component-based architecture.
+🚀 Deployment
 
-Improve CSS styling and layout skills.
+Frontend & Backend: Vercel
 
-Use Vite for a fast development workflow.
+Database: Neon PostgreSQL
 
-Manage project versions with Git and GitHub.
+🎯 Project Objective
 
-🔮 Future Improvements
+The main objective of this project was to gain practical experience in full-stack web development, including:
 
-Add interactive class booking.
+Building reusable React components.
 
-Implement membership registration.
+Creating and integrating REST APIs.
 
-Add form validation.
+Implementing user authentication and session management.
 
-Integrate a backend API.
+Connecting a backend application to a PostgreSQL database.
 
-Deploy the website online.
+Managing source code with Git and GitHub.
+
+Deploying a full-stack application online.
 
 👨‍💻 Author
 
 Youssef
 
-Software Engineering | Web Development
+GitHub Profile
 
-GitHub: youssef2222
-
-Pulse Fitness — Train Hard. Stay Strong.
+Pulse Fitness — Train with purpose. Make every session count.
