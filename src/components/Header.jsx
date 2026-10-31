@@ -27,7 +27,7 @@ export function Header() {
   }
 
   return (
-    <header className="relative border-b border-[#333] bg-[#080808] text-white">
+    <header className="relative border-b border-[#333] bg-[#080808] text-white" id="header">
       <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between px-4 sm:min-h-[88px] sm:px-6 lg:px-10">
 
         {/* Logo */}
