@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { getMyMemberships } from "../services/api";
+import { getMyMemberships, createCheckoutSession } from "../services/api";
 
 export function MyBookings() {
   const [memberships, setMemberships] = useState([]);
@@ -31,6 +31,25 @@ export function MyBookings() {
       window.removeEventListener("membership-updated", loadMemberships);
     };
   }, []);
+
+
+  const [paymentLoading, setPaymentLoading] = useState(false);
+
+  async function handleBuySubscription(planId) {
+    try {
+      setPaymentLoading(true);
+
+      const data = await createCheckoutSession(planId);
+
+      // Redirect to Stripe Checkout
+      window.location.href = data.url;
+
+    } catch (error) {
+      alert(error.message);
+      setPaymentLoading(false);
+    }
+  }
+
 
   return (
     <aside className="w-full border border-[#333] bg-[#141414] p-4 text-white shadow-2xl">
@@ -88,6 +107,16 @@ export function MyBookings() {
                   End:{" "}
                   {new Date(membership.ends_at).toLocaleDateString()}
                 </p>
+                {membership.status === "active" && (
+                  <button
+                    type="button"
+                    onClick={() => handleBuySubscription(membership.plan_id)}
+                    disabled={paymentLoading}
+                    className="mt-4 w-full border border-white bg-white px-4 py-3 text-sm font-bold text-black hover:bg-transparent hover:text-white disabled:opacity-50"
+                  >
+                    {paymentLoading ? "REDIRECTING..." : "BUY SUBSCRIPTION"}
+                  </button>
+                )}
               </div>
             </article>
           ))}

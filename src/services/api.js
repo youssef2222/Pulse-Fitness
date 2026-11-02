@@ -99,3 +99,11 @@ export function getMyMemberships() {
   return authRequest("/memberships/my");
 }
 
+// Create a Stripe Checkout session
+export function createCheckoutSession(plan_id) {
+  return authRequest("/payments/checkout", {
+    method: "POST",
+    body: JSON.stringify({ plan_id }),
+  });
+}
+

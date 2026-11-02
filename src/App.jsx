@@ -15,6 +15,7 @@ import { Footer } from "./components/Footer";
 
 import { Signup } from "./pages/Signup";
 import { Login } from "./pages/Login";
+import { Dashboard } from "./pages/Dashboard";
 
 function ProtectedRoute() {
   const { user, loading } = useAuth();
@@ -41,22 +42,6 @@ function ProtectedLayout() {
       <Outlet />
       <Footer />
     </>
-  );
-}
-
-function Dashboard() {
-  const { user } = useAuth();
-
-  return (
-    <main className="min-h-screen bg-[#080808] p-10 text-white">
-      <h1 className="text-3xl font-bold">
-        WELCOME, {user?.full_name?.toUpperCase()}
-      </h1>
-
-      <p className="mt-4 text-gray-400">
-        Welcome to your Pulse Fitness account.
-      </p>
-    </main>
   );
 }
 

@@ -155,15 +155,11 @@ const trainingOptions = [
   },
 ];
 
-const sectionClass =
-  "mx-auto max-w-[1280px] px-6 py-[20px] lg:px-8 lg:py-[20px]";
+const sectionClass ="mx-auto max-w-[1280px] px-6 py-[20px] lg:px-8 lg:py-[20px]";
 const eyebrowClass = "mb-4 text-xs font-bold tracking-[0.2em] text-[#a5a5a5]";
-const headingClass =
-  "text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl";
-const cardClass =
-  "flex flex-col border border-[#333] bg-[#141414] p-6 transition-colors hover:border-white sm:p-8";
-const buttonClass =
-  "inline-flex items-center justify-center border border-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-white hover:text-black";
+const headingClass ="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl";
+const cardClass = "flex flex-col border border-[#333] bg-[#141414] p-6 transition-colors hover:border-white sm:p-8";
+const buttonClass ="inline-flex items-center justify-center border border-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-white hover:text-black";
 
 //controlled component reused per item
 function FavoriteToggle({ checked, onChange }) {

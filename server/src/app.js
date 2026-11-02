@@ -8,8 +8,11 @@ import connectPgSimple from "connect-pg-simple";
 import bcrypt from "bcrypt";
 import { rateLimit } from "express-rate-limit";
 import { pool } from "./db.js";
+import Stripe from "stripe";
+
 
 const app = express();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.set("trust proxy", 1);
 
@@ -29,6 +32,132 @@ app.use(cors({
   origin: process.env.CLIENT_URL || "http://localhost:5173",
   credentials: true,
 }));
+
+// STRIPE WEBHOOK — must be before express.json()
+app.post(
+  "/api/stripe/webhook",
+  express.raw({ type: "application/json" }),
+  async (req, res) => {
+    const signature = req.headers["stripe-signature"];
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.body,
+        signature,
+        process.env.STRIPE_WEBHOOK_SECRET
+      );
+    } catch (error) {
+      console.error("Stripe webhook signature error:", error.message);
+      return res.status(400).send(`Webhook Error: ${error.message}`);
+    }
+
+    if (event.type === "checkout.session.completed") {
+      const checkoutSession = event.data.object;
+
+      // Only activate a membership after Stripe confirms payment
+      if (checkoutSession.payment_status !== "paid") {
+        return res.json({ received: true });
+      }
+
+      const orderId = checkoutSession.metadata?.orderId;
+
+      if (!orderId) {
+        console.error("Missing orderId in Stripe metadata.");
+        return res.status(400).json({ error: "Missing order ID." });
+      }
+
+      const client = await pool.connect();
+
+      try {
+        await client.query("BEGIN");
+
+        // Lock the order to prevent duplicate activation
+        const orderResult = await client.query(
+          `SELECT id, user_id, status
+           FROM orders
+           WHERE id = $1
+           FOR UPDATE`,
+          [orderId]
+        );
+
+        if (orderResult.rows.length === 0) {
+          await client.query("ROLLBACK");
+          return res.status(404).json({ error: "Order not found." });
+        }
+
+        const order = orderResult.rows[0];
+
+        // Webhooks can be delivered more than once
+        if (order.status === "paid") {
+          await client.query("COMMIT");
+          return res.json({ received: true });
+        }
+
+        // Get the plan from the order
+        const itemResult = await client.query(
+          `SELECT oi.plan_id, mp.duration_days
+           FROM order_items oi
+           JOIN membership_plans mp ON mp.id = oi.plan_id
+           WHERE oi.order_id = $1
+           LIMIT 1`,
+          [orderId]
+        );
+
+        if (itemResult.rows.length === 0) {
+          throw new Error("No membership plan found for this order.");
+        }
+
+        const plan = itemResult.rows[0];
+
+        // Mark the order as paid
+        await client.query(
+          `UPDATE orders
+           SET status = 'paid',
+               stripe_payment_intent_id = $1,
+               updated_at = NOW()
+           WHERE id = $2`,
+          [checkoutSession.payment_intent, orderId]
+        );
+
+        // Cancel previous active memberships
+        await client.query(
+          `UPDATE user_memberships
+           SET status = 'cancelled'
+           WHERE user_id = $1 AND status = 'active'`,
+          [order.user_id]
+        );
+
+        // Activate the newly purchased membership
+        await client.query(
+          `INSERT INTO user_memberships
+           (user_id, plan_id, starts_at, ends_at, status)
+           VALUES (
+             $1,
+             $2,
+             NOW(),
+             NOW() + ($3 * INTERVAL '1 day'),
+             'active'
+           )`,
+          [order.user_id, plan.plan_id, plan.duration_days]
+        );
+
+        await client.query("COMMIT");
+
+        console.log(`Order ${orderId} paid. Membership activated.`);
+      } catch (error) {
+        await client.query("ROLLBACK");
+        console.error("Webhook processing error:", error);
+        return res.status(500).json({ error: "Webhook processing failed." });
+      } finally {
+        client.release();
+      }
+    }
+
+    res.json({ received: true });
+  }
+);
 
 app.use(express.json());
 
@@ -78,7 +207,7 @@ function saveSession(req) {
 }
 
 // --------------------------------------------------
-// AUTHENTICATION
+// AUTHENTICATION middleware
 
 function requireAuth(req, res, next) {
   if (!req.session.userId) {
@@ -423,6 +552,7 @@ app.get("/api/memberships/my", requireAuth, async (req, res) => {
     const result = await pool.query(
       `SELECT
          um.id,
+         um.plan_id,
          um.status,
          um.starts_at,
          um.ends_at,
@@ -450,10 +580,120 @@ app.get("/api/memberships/my", requireAuth, async (req, res) => {
 });
 
 
+// Create Stripe Checkout session
+//-----------------------------------------------------
+
+app.post("/api/payments/checkout", requireAuth, async (req, res) => {
+  const { plan_id } = req.body;
+
+  try {
+    // 1. Validate the plan ID
+    if (!plan_id || !Number.isInteger(Number(plan_id))) {
+      return res.status(400).json({ error: "Invalid membership plan." });
+    }
+
+    // 2. Get the plan from the database
+    const planResult = await pool.query(
+      `SELECT id, name, price, duration_days
+       FROM membership_plans
+       WHERE id = $1 AND active = true`,
+      [plan_id]
+    );
+
+    if (planResult.rows.length === 0) {
+      return res.status(404).json({ error: "Membership plan not found." });
+    }
+
+    const plan = planResult.rows[0];
+    const priceInCents = Math.round(Number(plan.price) * 100);
+
+    if (!Number.isFinite(priceInCents) || priceInCents <= 0) {
+      return res.status(400).json({ error: "Invalid plan price." });
+    }
+
+    // 3. Create a pending order
+    const orderResult = await pool.query(
+      `INSERT INTO orders (user_id, total_amount, currency)
+       VALUES ($1, $2, $3)
+       RETURNING id`,
+      [req.session.userId, plan.price, "usd"]
+    );
+
+    const orderId = orderResult.rows[0].id;
+
+    // 4. Add the selected plan to the order
+    await pool.query(
+      `INSERT INTO order_items
+       (order_id, plan_id, item_name, unit_price, quantity, line_total)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [orderId, plan.id, plan.name, plan.price, 1, plan.price]
+    );
+
+    // 5. Create Stripe Checkout session
+    const clientUrl = process.env.CLIENT_URL || "http://localhost:5173";
+
+    const checkoutSession = await stripe.checkout.sessions.create({
+      mode: "payment",
+
+
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: `${plan.name} Membership`,
+              description: `${plan.duration_days} days membership`,
+            },
+            unit_amount: priceInCents,
+          },
+          quantity: 1,
+        },
+      ],
+
+      success_url: `${clientUrl}/?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${clientUrl}/?checkout=cancelled`,
+
+      client_reference_id: String(orderId),
+
+      metadata: {
+        orderId: String(orderId),
+        userId: String(req.session.userId),
+        planId: String(plan.id),
+      },
+    });
+
+    // 6. Save the Stripe session ID
+    await pool.query(
+      `UPDATE orders
+       SET stripe_checkout_session_id = $1,
+           updated_at = NOW()
+       WHERE id = $2`,
+      [checkoutSession.id, orderId]
+    );
+
+    res.status(201).json({
+      url: checkoutSession.url,
+    });
+
+  } catch (error) {
+    console.error("Checkout error:", error.message);
+
+    res.status(500).json({
+      error: "Unable to create checkout session.",
+    });
+  }
+});
+
+
 
 
 // --------------------------------------------------
 // START SERVER
 // --------------------------------------------------
 
-export default app;
+//export default app;
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
