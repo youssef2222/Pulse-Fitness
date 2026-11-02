@@ -107,16 +107,20 @@ export function MyBookings() {
                   End:{" "}
                   {new Date(membership.ends_at).toLocaleDateString()}
                 </p>
-                {membership.status === "active" && (
-                  <button
-                    type="button"
-                    onClick={() => handleBuySubscription(membership.plan_id)}
-                    disabled={paymentLoading}
-                    className="mt-4 w-full border border-white bg-white px-4 py-3 text-sm font-bold text-black hover:bg-transparent hover:text-white disabled:opacity-50"
-                  >
-                    {paymentLoading ? "REDIRECTING..." : "BUY SUBSCRIPTION"}
-                  </button>
-                )}
+                {membership.status === "active" ? (
+                        <p className="mt-4 border border-green-500/40 bg-green-500/10 px-4 py-3 text-center text-sm font-bold text-green-400">
+                          SUBSCRIPTION ACTIVE
+                        </p>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleBuySubscription(membership.plan_id)}
+                          disabled={paymentLoading}
+                          className="mt-4 w-full border border-white bg-white px-4 py-3 text-sm font-bold text-black hover:bg-transparent hover:text-white disabled:opacity-50"
+                        >
+                          {paymentLoading ? "REDIRECTING..." : "BUY SUBSCRIPTION"}
+                        </button>
+                      )}
               </div>
             </article>
           ))}

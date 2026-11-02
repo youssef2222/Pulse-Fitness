@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { getClasses, getTrainers , getPlans , subscribeToPlan } from "../services/api";
+import { getClasses, getTrainers , getPlans , createCheckoutSession } from "../services/api";
 
 
 // const classes = [
@@ -189,12 +189,12 @@ export function Container() {
       try {
         setBookingLoading(plan.id);
 
-        const data = await subscribeToPlan(plan.id);
+        const data = await createCheckoutSession(plan.id);
 
-        alert(data.message);
+        window.location.href = data.url;
+
       } catch (error) {
         alert(error.message);
-      } finally {
         setBookingLoading(null);
       }
     }
@@ -533,8 +533,8 @@ export function Container() {
                       }
                     >
                       {bookingLoading === plan.id
-                        ? "ADDING..."
-                        : `CHOOSE ${plan.name.toUpperCase()}`}
+                            ? "REDIRECTING..."
+                            : "BUY SUBSCRIPTION"}
                   </button>
                 </article>
               ))
