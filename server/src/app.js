@@ -16,6 +16,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.set("trust proxy", 1);
 
+console.log(
+  "Stripe secret key loaded:",
+  Boolean(process.env.STRIPE_SECRET_KEY)
+);
+
 if (!process.env.SESSION_SECRET) {
   throw new Error("SESSION_SECRET is missing from server/.env");
 }
@@ -691,9 +696,19 @@ app.post("/api/payments/checkout", requireAuth, async (req, res) => {
 // START SERVER
 // --------------------------------------------------
 
-//export default app;
-const PORT = process.env.PORT || 4000;
+export default app;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 4000;
+
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
+
+// const PORT = process.env.PORT || 4000;
+
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
