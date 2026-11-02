@@ -1,118 +1,109 @@
-Pulse Fitness 🏋️
+Pulse Fitness 💪
 
-Pulse Fitness is a full-stack fitness web application designed to help users discover fitness classes, explore trainers, view membership plans, and manage their accounts.
+A modern fitness platform built with React, Tailwind CSS, Node.js, and PostgreSQL.
 
-The project was developed as part of the Mayerfeld Frontend Developer Practicum, with the goal of building a responsive and functional web application using modern web technologies.
+🌐 Live Demo: https://my-pulse-fitness.vercel.app/
 
-🌐 Live Demo
+📌 About the Project
 
-Visit Pulse Fitness
+Pulse Fitness started as a fitness website and evolved into a full-stack web application.
 
-✨ Features
+The project focuses on transforming a frontend website into a functional platform by adding a backend, database, user authentication, membership management, and online payments.
 
-Homepage: Modern and responsive fitness website.
+It was developed in several stages:
 
-Classes: Explore available fitness classes.
+Frontend Development: Evolved the website using JavaScript, React, and Tailwind CSS, with reusable components and responsive layouts.
 
-Trainers: Discover the fitness team.
+Backend & Database: Built a REST API with Node.js and Express, connected it to a Neon PostgreSQL database, and implemented user authentication.
 
-Membership Plans: View available membership options.
+Deployment: Deployed the application using Vercel and Neon PostgreSQL.
 
-User Authentication: Register, log in, and log out.
+Payment Integration: Integrated Stripe Checkout in test mode to simulate secure membership payments.
 
-Session Management: Maintain authenticated user sessions.
+🚀 Main Features
 
-Membership Management: Subscribe to membership plans.
+Responsive fitness website.
+
+User registration and login.
+
+Secure password hashing.
+
+Membership plans and subscription management.
+
+Class and trainer information.
+
+User dashboard and booking management.
+
+Stripe Checkout integration (test mode).
+
+Membership activation after successful payment.
 
 🛠️ Technologies Used
 
+Area
+
+Technologies
+
 Frontend
 
-React
+React, JavaScript, Vite
 
-Vite
+Styling
 
 Tailwind CSS
 
-JavaScript
-
 Backend
 
-Node.js
-
-Express.js
-
-REST API
-
-bcrypt for password hashing
-
-Express Session for authentication
+Node.js, Express.js
 
 Database
 
-PostgreSQL
+PostgreSQL (Neon)
 
-Neon (Cloud Database)
+Authentication
 
-Deployment & Tools
+Express Sessions, bcrypt
+
+Payments
+
+Stripe Checkout (Test Mode)
+
+Deployment
 
 Vercel
-
-Git & GitHub
 
 🏗️ Project Architecture
 
 The application is organized into three main parts:
 
-Pulse Fitness
-│
-├── Client (React + Vite)
-│   └── User Interface
-│
-├── Server (Node.js + Express)
-│   └── API, Authentication & Business Logic
-│
-└── Database (PostgreSQL + Neon)
-    └── Users, Classes, Trainers & Memberships
+Client: React + Vite — handles the user interface, pages, forms, and interactions.
 
-How it works:
+Server: Node.js + Express — handles authentication, API requests, membership management, and payments.
 
-The user interacts with the React frontend.
+Database: Neon PostgreSQL — stores users, membership plans, bookings, and payment orders.
 
-The frontend sends HTTP requests to the Express backend.
+💳 Payment Flow
 
-The backend processes requests and communicates with PostgreSQL.
+Stripe Checkout is integrated in test mode.
 
-The database stores and returns the required information.
+The user selects a membership plan.
 
-The backend sends responses to the frontend.
+The backend creates a pending order.
 
-🚀 Deployment
+The user is redirected to Stripe Checkout.
 
-Frontend & Backend: Vercel
+Stripe processes the test payment.
 
-Database: Neon PostgreSQL
+After successful payment confirmation through a webhook, the order is marked as paid and the membership is activated.
 
-🎯 Project Objective
+Note: Payments are in Stripe test mode. No real money is charged.
 
-The main objective of this project was to gain practical experience in full-stack web development, including:
+🌍 Live Demo
 
-Building reusable React components.
+Try the application here:
 
-Creating and integrating REST APIs.
+👉 Pulse Fitness – Live Demo
 
-Implementing user authentication and session management.
+👨‍💻 Developer
 
-Connecting a backend application to a PostgreSQL database.
-
-Managing source code with Git and GitHub.
-
-Deploying a full-stack application online.
-
-👨‍💻 Author
-
-Youssef
-
-GitHub Profile
-
-Pulse Fitness — Train with purpose. Make every session count.
+Developed as a full-stack learning project to practice modern frontend development, backend APIs, database integration, authentication, deployment, and payment processing.
